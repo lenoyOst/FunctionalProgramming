@@ -6,6 +6,19 @@ object Util {
                 val cFeature = Util.max[(String, Double)](list.toList, (d1: (String, Double), d2: (String, Double)) => math.floor(d1._2 - d2._2).toInt)
                 (feature, cFeature._1, cFeature._2)
         }
+        def fillMap(map : Map[String,Vector[Double]] ,vector: Vector[Double] , i : Int ,j : Int , lines: List[Array[String]]): Map[String,Vector[Double]] = {
+                if(j < lines(0).length) {
+                        if (i < lines.length) {
+                                fillMap(map, vector :+ (lines(i)(j)).toDouble, i + 1, j , lines)
+                        }
+                        else {
+                                fillMap(map ++ Map(lines(0)(j) -> vector) , Vector[Double]() , 1 , j+1,lines)
+                        }
+                }
+                else {
+                        map
+                }
+        }
 
         def max[A](list: List[A], f: (A, A) => Int): A = {
                 def go(index: Int, max: A): A = {
