@@ -23,7 +23,7 @@ object MainTrain {
       println("problem with the second half of the split (-3)")
   }
 
-  /* EntropyAnomalyDetector test
+  //EntropyAnomalyDetector test
   def testEAD(ts: TimeSeries, chunks: Int): Unit = {
     val es = Executors.newFixedThreadPool(chunks)
     val ac = Thread.activeCount()
@@ -31,19 +31,20 @@ object MainTrain {
     if (Thread.activeCount() <= ac)
       println("wrong number of opened threads (-7)")
     es.shutdown()
-    if (!(v(0).feature == "A" && v(0).timeStep == 24))
+    if (!(v(0).feature == "A" && v(0).timeStep == 24)) {
       println("wrong anomaly reported for feature A with " + chunks + " chunks (-8)")
+    }
     if (!(v(1).feature == "B" && v(1).timeStep == 29))
       println("wrong anomaly reported for feature B with " + chunks + " chunks (-8)")
     if (!(v(2).feature == "C" && v(2).timeStep == 50))
       println("wrong anomaly reported for feature C with " + chunks + " chunks (-8)")
-  }*/
+  }
   def main(args: Array[String]): Unit = {
     testTimeSeries()
-    //val ts = new TimeSeries("train2.csv")
-    //testEAD(ts, 1)
-    //testEAD(ts, 3)
-    //testEAD(ts, 5)
+    val ts = new TimeSeries("train2.csv")
+    testEAD(ts, 1)
+    testEAD(ts, 3)
+    testEAD(ts, 5)
     println("done")
   }
 }

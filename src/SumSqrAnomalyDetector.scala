@@ -1,7 +1,7 @@
 
 object SumSqrAnomalyDetector extends  AnomalyDetector {
   def dist(p1: Point, p2: Point): Double = {
-    math.pow(math.sqrt(math.pow((p1.x - p2.x), 2) + math.pow(p1.y - p2.y, 2)),2)
+    math.pow(math.sqrt(math.pow(p1.x - p2.x, 2) + math.pow(p1.y - p2.y, 2)),2)
   }
   override def learn(normal: TimeSeries): Map[String, String] = {
       def loopMap(map: Map[String, String], index: Int): Map[String, String] = {

@@ -1,5 +1,22 @@
 
 object Util {
+        def removeByIndex[A](vector:Vector[A] , index:Int): Vector[A] =
+        {
+                def loop(newVec:Vector[A],i:Int ): Vector[A] ={
+                        if(i<vector.length){
+                                if(index == i) {
+                                        loop(newVec, i + 1)
+                                }
+                                else {
+                                        loop(newVec:+vector(i) , i+1)
+                                }
+                        }
+                        else{
+                                newVec
+                        }
+                }
+                loop(Vector(),0)
+        }
         def findCo(normal: TimeSeries, index: Int): (String, String, Double) = {
                 val feature = normal.features(index)
                 val list = normal.features.drop(index + 1).map { (s: String) => (s, Util.pearson(Util.vectorToArray(normal.getValues(s).get), Util.vectorToArray(normal.getValues(feature).get)).abs) }
